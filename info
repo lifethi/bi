@@ -1,0 +1,32 @@
+Visuals
+
+   * Matrix: Disease × Gender → Count of Patients
+   * Bar Chart: Gender vs Billing Amount
+   * Column Chart: Disease vs Avg Billing
+   * Pie Chart: Admission Type Distribution
+   * Cards: Total Billing, Total Patients
+   * Stacked Bar Chart: Billing by Gender + Admission Type
+   * Slicers: Gender, Disease, Admission Type
+
+
+queries :
+TotalPatients = COUNTROWS(cleaned_healthcare_data)
+
+TotalBilling = SUM(cleaned_healthcare_data[Billing_Amount])
+
+AvgBilling = AVERAGE(cleaned_healthcare_data[Billing_Amount])
+
+TotalPatients_All = CALCULATE(COUNTROWS(cleaned_healthcare_data), ALL(cleaned_healthcare_data))
+
+TotalBilling_ByGender = CALCULATE(
+    SUM(cleaned_healthcare_data[Billing_Amount]),
+    ALLEXCEPT(cleaned_healthcare_data, cleaned_healthcare_data[Gender])
+)
+
+SummaryTable = 
+SUMMARIZE(
+    cleaned_healthcare_data,
+    cleaned_healthcare_data[Medical_Condition],
+    "PatientCount", COUNT(cleaned_healthcare_data[Name]),
+    "AvgBill", AVERAGE(cleaned_healthcare_data[Billing_Amount])
+)
