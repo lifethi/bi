@@ -23,10 +23,10 @@ TotalBilling_ByGender = CALCULATE(
     ALLEXCEPT(cleaned_healthcare_data, cleaned_healthcare_data[Gender])
 )
 
-SummaryTable = 
+summary_table1 = 
 SUMMARIZE(
-    cleaned_healthcare_data,
-    cleaned_healthcare_data[Medical_Condition],
-    "PatientCount", COUNT(cleaned_healthcare_data[Name]),
-    "AvgBill", AVERAGE(cleaned_healthcare_data[Billing_Amount])
+    'healthcare_prediction_dataset',
+    'healthcare_prediction_dataset'[Discharge Date],
+    "billingcount", COUNT('healthcare_prediction_dataset'[Billing Amount]),
+    "Average Age", AVERAGE('healthcare_prediction_dataset'[Age])
 )
